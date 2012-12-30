@@ -15,6 +15,10 @@ class MailgunAPI(object):
 
  def API_call(self, method, endpoint, **kwargs):
   send_dict = kwargs
+  tags = send_dict.get('tags', [])
+  if tags:
+   del send_dict['tags']
+   send_dict['o:tag'] = tags
   if self.test_mode:
    send_dict['o:testmode'] = True
   url = self.build_url(endpoint)
