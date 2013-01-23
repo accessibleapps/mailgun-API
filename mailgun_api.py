@@ -35,7 +35,7 @@ class MailgunAPI(object):
   send_dict['from'] = sender
   return self.post('messages', **send_dict)
 
- def send_many(sender, to, **kwargs):
+ def send_many(self, sender, to, **kwargs):
   for start in xrange(0, len(to), MAX_PER_SEND):
    self.send_message(sender, to[start:start+MAX_PER_SEND], **kwargs)
 
