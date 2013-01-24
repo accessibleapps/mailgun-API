@@ -22,7 +22,6 @@ class MailgunAPI(object):
   if self.test_mode:
    send_dict['o:testmode'] = True
   url = self.build_url(endpoint)
-  print url, send_dict
   response = method(url, data=send_dict)
   response.raise_for_status()
   return response.json()
