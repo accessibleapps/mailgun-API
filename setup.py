@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 __name__ = "Mailgun-API"
-__version__ = "0.1"
+__version__ = 0.11
 __doc__ = """Easy API access to mailgun!"""
 
 setup(
