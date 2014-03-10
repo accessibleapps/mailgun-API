@@ -13,7 +13,7 @@ class MailgunAPI(object):
   self.session = requests.session()
   self.session.auth = (API_USERNAME, api_key)
 
- def API_call(self, method, endpoint, **kwargs):
+ def API_call(self, method, endpoint, files=None, **kwargs):
   send_dict = kwargs
   tags = send_dict.get('tags', [])
   if tags:
@@ -22,7 +22,10 @@ class MailgunAPI(object):
   if self.test_mode:
    send_dict['o:testmode'] = True
   url = self.build_url(endpoint)
-  response = method(url, data=send_dict)
+  if files is not None:
+   response = method(url, data=send_dict, files=files)
+  else:
+   response = method(url, data=send_dict)
   response.raise_for_status()
   return response.json()
 
